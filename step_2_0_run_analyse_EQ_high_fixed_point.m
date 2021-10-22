@@ -1,3 +1,5 @@
+%  Copyright 2021 Aix-Marseille Université
+% "Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements; and to You under the Apache License, Version 2.0. "
 path = "/home/kusch/Documents/project/Zerlaut/compare_zerlaut/parameter_analyse/analyse_dynamic/";
 nb_variable = 17;
 xinit = [0.0,0.0,0.0,0.0,0.0,0.0];

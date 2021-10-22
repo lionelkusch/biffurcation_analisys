@@ -1,3 +1,5 @@
+%  Copyright 2021 Aix-Marseille Université
+% "Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements; and to You under the Apache License, Version 2.0. "
 function Limit_Point(path,folder,file,nb_variable,nb_variable_2,nb_LP,MaxStepsize,MinStepsize,MaxNumPoints_forward,MaxNumPoints_backward,value)
     
     global name_variable

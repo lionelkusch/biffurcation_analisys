@@ -1,3 +1,5 @@
+%  Copyright 2021 Aix-Marseille Université
+% "Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements; and to You under the Apache License, Version 2.0. "
 function print_stability(x1,f1,s1,x2,f2,s2,axis_x,axis_y)
     function print (xeqcurve,minevaleq,s,axis_x,axis_y)
         L=length(xeqcurve(1,:));

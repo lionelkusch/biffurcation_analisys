@@ -1,3 +1,5 @@
+%  Copyright 2021 Aix-Marseille Université
+% "Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements; and to You under the Apache License, Version 2.0. "
 function Limit_Circle(path,folder,nb_variable,xinit,MaxStepsize,MinStepSize,MaxNumPoints_forward,MaxNumPoints_backward,tolerance)
     global name_variable
     [UserInfo,pvec,syshandle,RHShandle] = start_analyse(path,folder,nb_variable);
