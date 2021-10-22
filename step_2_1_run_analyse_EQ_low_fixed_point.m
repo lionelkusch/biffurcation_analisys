@@ -11,14 +11,14 @@ xinit = [192.633343733407e-003, 192.792039966707e-003, 88.6955903317254e-009, 4.
 % 
 % Equilibrium_Point(path,folder,nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward)
 
-% %% backword begin
-% folder = "EQ_High_2";
-% xinit = [192.659455940815e-003,192.792565578740e-003,88.3928352306562e-009,4.69895412417912e-012,347.390582747485e-009,0.00000000000000e+000];
-% MaxStepsize=1e-5;
-% MaxNumPoints_forward =-1;
-% MaxNumPoints_backward=41000;  
-% 
-% Equilibrium_Point(path,folder,nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward)
+%% backword begin
+folder = "EQ_High_2";
+xinit = [192.659455940815e-003,192.792565578740e-003,88.3928352306562e-009,4.69895412417912e-012,347.390582747485e-009,0.00000000000000e+000];
+MaxStepsize=1e-5;
+MaxNumPoints_forward =-1;
+MaxNumPoints_backward=41000;  
+
+Equilibrium_Point(path,folder,nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward)
 
 %% backword follow
 folder="EQ_High_3";

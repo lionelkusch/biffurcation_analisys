@@ -63,11 +63,11 @@ function print_stability(x1,f1,s1,x2,f2,s2,axis_x,axis_y)
     % colordef(gcf,'black')
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    print(x1,f1,s1,axis_x,axis_y)
+    print(x1,f1,s1,axis_y,axis_x)
     
         %%
     %%%%% Plotting script.  x=continuation info  f=eigenvalues  backward%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    print(x2,f2,s2,axis_x,axis_y)
+    print(x2,f2,s2,axis_y,axis_x)
 end

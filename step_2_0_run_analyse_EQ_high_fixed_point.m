@@ -3,13 +3,13 @@
 path = "/home/kusch/Documents/project/Zerlaut/compare_zerlaut/parameter_analyse/analyse_dynamic/";
 nb_variable = 17;
 xinit = [0.0,0.0,0.0,0.0,0.0,0.0];
-% %% forward
-% folder = "EQ_low";
-% MaxStepsize=1e-6;
-% MaxNumPoints_forward =200000;
-% MaxNumPoints_backward=20000;  
-% 
-% Equilibrium_Point(path,folder,nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward)
+%% forward
+folder = "EQ_low";
+MaxStepsize=1e-6;
+MaxNumPoints_forward =200000;
+MaxNumPoints_backward=20000;  
+
+Equilibrium_Point(path,folder,nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward)
 
 % %% forward precision for first LP
 % folder = "EQ_low_precision";
