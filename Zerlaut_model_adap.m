@@ -5,6 +5,7 @@ function [dev_E,dev_I,dev_c_ee,dev_c_ei,dev_c_ii,dev_W]=Zerlaut_model_adap(E,I,C
     N_e = N_tot*(1-g);
     N_i = N_tot*g;
     W_i = 0.0;
+    W_e = W_e*1e3; % change unit for uniform the dimension for the bifurcation
     external_input_I_E = external_input_E_E;
     external_input_I_I = external_input_E_I;
     function  [mu_V, sigma_V, T_V]=get_fluct_regime_vars(Fe, Fi, W, E_L)
@@ -111,6 +112,7 @@ function [dev_E,dev_I,dev_c_ee,dev_c_ei,dev_c_ii,dev_W]=Zerlaut_model_adap(E,I,C
                 2.*C_ei.*diff_fe(@TF_e, E+external_input_E_E, I+external_input_E_I, W_e)+...
                 -2.*C_ii)./T; 
      dev_W = -W_e/tau_w_e+b_e*(E+external_input_E_E);
+     dev_W = dev_W*1e-3;
 
 end
      
