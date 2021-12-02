@@ -18,7 +18,7 @@ function Limit_Circle(path,folder,nb_variable,xinit,MaxStepsize,MinStepSize,MaxN
         [x0,v0]=initOrbLC(syshandle, tout, xout, pvec, ap, 30, 4, tolerance_init); %Initialize equilibrium
     else
         pvec(ap)=value{1};
-        init_LC_LC(syshandle, xinit, value{2}, value{3}, pvec, ap, 30, 4);
+        [x0,v0]=init_LC_LC(syshandle, xinit, value{2}, value{3}, pvec, ap, 30, 4);
     end
     
     %%%%% Initialize Matcont options %%%%%

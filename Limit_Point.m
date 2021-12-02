@@ -76,7 +76,7 @@ function Limit_Point(path,folder,file,nb_variable,nb_variable_2,nb_LP,MaxStepsiz
     end
 
 
-    f=printing(x1,f1,v1,s1,x2,f2,v2,s2,nb_variable,nb_variable_2);
+    f=printing(x1,f1,v1,s1,x2,f2,v2,s2,nb_variable,nb_variable_2,10^-5);
     %% save figures
-    savefig(f,path+"/"+folder+"/"+name_variable(nb_variable)+'_precision.fig')
+    savefig(f,path+"/"+folder+"/"+name_variable(nb_variable)+'_'+name_variable(nb_variable_2)+'.fig')
     close(f)
