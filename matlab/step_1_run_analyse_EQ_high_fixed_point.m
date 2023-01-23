@@ -14,14 +14,14 @@ end
 nb_variable = 17;
 xinit = [192.633343733407e-003, 192.792039966707e-003, 88.6955903317254e-009, 4.87672060835196e-012, 347.414969848884e-009];
 
-% %% forward
-% folder = "start";
-% MaxStepsize=1e-5;
-% MaxNumPoints_forward =20050;
-% MaxNumPoints_backward=2000000;  
-% Increment=1e-6;
-% TestTolerance=1e-6;
-% Equilibrium_Point(path,strcat(directory,folder),nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance)
+%% forward
+folder = "start";
+MaxStepsize=1e-5;
+MaxNumPoints_forward =20050;
+MaxNumPoints_backward=2000000;  
+Increment=1e-6;
+TestTolerance=1e-6;
+Equilibrium_Point(path,strcat(directory,folder),nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance)
 
 %% concatenation
 path = strcat(path,directory);

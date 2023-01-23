@@ -14,91 +14,91 @@ end
 nb_variable = 17;
 xinit = [0.0,0.0,0.0,0.0,0.0];
 
-% %% forward
-% folder = "start";
-% MaxStepsize=1e-5;
-% MaxNumPoints_forward =61400;
-% MaxNumPoints_backward=2000000;  
-% Increment=1e-6;
-% TestTolerance=1e-6;
-% Equilibrium_Point(path,strcat(directory,folder),nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance)
-% 
-% %% LP low
-% folder="LP_low";
-% file="start/external_input_E_E_f.mat";
-% number= 61400-47;
-% MaxStepsize=1e-8;
-% MaxNumPoints_forward=20;
-% MaxNumPoints_backward=-1; 
-% Increment=1e-7;
-% TestTolerance=1e-6;
-% Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance)
-%
-% %% LP middle
-% folder="LP_middle";
-% file="start/external_input_E_E_f.mat";
-% number= 61400-839;
-% MaxStepsize=1e-8;
-% MaxNumPoints_forward=200;
-% MaxNumPoints_backward=-1; 
-% Increment=1e-7;
-% TestTolerance=1e-6;
-% Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance)
-% 
-% %% H middle
-% folder="H_middle";
-% file="start/external_input_E_E_f.mat";
-% number= 61400-1929;
-% MaxStepsize=1e-8;
-% MaxNumPoints_forward=400;
-% MaxNumPoints_backward=-1; 
-% Increment=1e-7;
-% TestTolerance=1e-6;
-% Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance)
-% 
-% %% H high
-% folder="H_high";
-% file="start/external_input_E_E_f.mat";
-% number= 61400-19759;
-% MaxStepsize=1e-7;
-% MaxNumPoints_forward=400;
-% MaxNumPoints_backward=-1; 
-% Increment=1e-9;
-% TestTolerance=5e-2;
-% FunTolerance=1e-5; 
-% VarTolerance=1e-5; 
-% InitStepsize=1e-8; 
-% Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance, FunTolerance, VarTolerance, InitStepsize)
-% 
-% %% LP high
-% folder="LP_high";
-% file="start/external_input_E_E_f.mat";
-% number= 61400-19939;
-% MaxStepsize=1e-5;
-% MaxNumPoints_forward=400;
-% MaxNumPoints_backward=-1; 
-% Increment=1e-6;
-% TestTolerance=2e-6;
-% FunTolerance=1e-4; 
-% VarTolerance=1e-4; 
-% InitStepsize=1e-8; 
-% Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance, FunTolerance, VarTolerance, InitStepsize)
+%% forward
+folder = "start";
+MaxStepsize=1e-5;
+MaxNumPoints_forward =61400;
+MaxNumPoints_backward=2000000;  
+Increment=1e-6;
+TestTolerance=1e-6;
+Equilibrium_Point(path,strcat(directory,folder),nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance)
 
-% %% LP high 2
-% folder="LP_high_2";
-% file="start/external_input_E_E_f.mat";
-% number= 61400-39059;
-% MaxStepsize=1e-7;
-% MaxNumPoints_forward=1000;
-% MaxNumPoints_backward=-1; 
-% Increment=1e-7;
-% TestTolerance=1e-6;
-% FunTolerance=1e-5; 
-% VarTolerance=1e-5; middle
-% InitStepsize=1e-8; 
-% Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance, FunTolerance, VarTolerance, InitStepsize)
-%
-% 
+%% LP low
+folder="LP_low";
+file="start/external_input_E_E_f.mat";
+number= 61400-47;
+MaxStepsize=1e-8;
+MaxNumPoints_forward=20;
+MaxNumPoints_backward=-1; 
+Increment=1e-7;
+TestTolerance=1e-6;
+Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance)
+
+%% LP middle
+folder="LP_middle";
+file="start/external_input_E_E_f.mat";
+number= 61400-839;
+MaxStepsize=1e-8;
+MaxNumPoints_forward=200;
+MaxNumPoints_backward=-1; 
+Increment=1e-7;
+TestTolerance=1e-6;
+Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance)
+
+%% H middle
+folder="H_middle";
+file="start/external_input_E_E_f.mat";
+number= 61400-1929;
+MaxStepsize=1e-8;
+MaxNumPoints_forward=400;
+MaxNumPoints_backward=-1; 
+Increment=1e-7;
+TestTolerance=1e-6;
+Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance)
+
+%% H high
+folder="H_high";
+file="start/external_input_E_E_f.mat";
+number= 61400-19759;
+MaxStepsize=1e-7;
+MaxNumPoints_forward=400;
+MaxNumPoints_backward=-1; 
+Increment=1e-9;
+TestTolerance=5e-2;
+FunTolerance=1e-5; 
+VarTolerance=1e-5; 
+InitStepsize=1e-8; 
+Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance, FunTolerance, VarTolerance, InitStepsize)
+
+%% LP high
+folder="LP_high";
+file="start/external_input_E_E_f.mat";
+number= 61400-19939;
+MaxStepsize=1e-5;
+MaxNumPoints_forward=400;
+MaxNumPoints_backward=-1; 
+Increment=1e-6;
+TestTolerance=2e-6;
+FunTolerance=1e-4; 
+VarTolerance=1e-4; 
+InitStepsize=1e-8; 
+Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance, FunTolerance, VarTolerance, InitStepsize)
+
+%% LP high 2
+folder="LP_high_2";
+file="start/external_input_E_E_f.mat";
+number= 61400-39059;
+MaxStepsize=1e-7;
+MaxNumPoints_forward=1000;
+MaxNumPoints_backward=-1; 
+Increment=1e-7;
+TestTolerance=1e-6;
+FunTolerance=1e-5; 
+VarTolerance=1e-5; middle
+InitStepsize=1e-8; 
+Equilibrium_Point_cont(path,strcat(directory,folder),nb_variable,strcat(directory,file),number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance, FunTolerance, VarTolerance, InitStepsize)
+
+
 %% concatenation
 path = strcat(path,directory);
 global name_variable
@@ -113,18 +113,18 @@ name_variable=[
     'P_i_7','P_i_8','P_i_9',...
     ]; % Initialize parameter vector
 
-% % remove some detection for better precision
-% S=load(strcat(path,'/start/external_input_E_E_f.mat'),'-mat',"x","v","f","h","s");
-% x=S.x;
-% v=S.v;
-% f=S.f;
-% h=S.h;
-% s=S.s;
-% s_tmp(1) = s(1);
-% s_tmp(2) = s(4);
-% s_tmp(3) = s(5);
-% s = s_tmp;
-% save(strcat(path,'/start/external_input_E_E_f.mat'),'x','v','s','h','f');
+% remove some detection for better precision
+S=load(strcat(path,'/start/external_input_E_E_f.mat'),'-mat',"x","v","f","h","s");
+x=S.x;
+v=S.v;
+f=S.f;
+h=S.h;
+s=S.s;
+s_tmp(1) = s(1);
+s_tmp(2) = s(4);
+s_tmp(3) = s(5);
+s = s_tmp;
+save(strcat(path,'/start/external_input_E_E_f.mat'),'x','v','s','h','f');
 
 
 path_shift =[

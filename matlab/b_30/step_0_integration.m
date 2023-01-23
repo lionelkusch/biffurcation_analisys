@@ -43,15 +43,6 @@ figure()
 plot(tout,xout,'-k','linewidth',2)
 xout(end,:)
 
-% external_input_E_E=0.0e-3;
-% external_input_I_E=0.0e-3;
-% RHS_no_param_2=@(t,x)RHShandle(t,x,w_e,0.0,g_L,diff_E_L,E_L_i,C_m,E_e,E_i,Q_e,Q_i,tau_e,tau_i,N_tot,p_connect,g,T,external_input_E_E,external_input_E_I,external_input_I_E,external_input_I_I,P_e_0,P_e_1,P_e_2,P_e_3,P_e_4,P_e_5,P_e_6,P_e_7,P_e_8,P_e_9,P_i_0,P_i_1,P_i_2,P_i_3,P_i_4,P_i_5,P_i_6,P_i_7,P_i_8,P_i_9);
-% [tout xout]=ode45(RHS_no_param_2,[0,500],xout(end,:),options);
-% figure()
-% plot(tout,xout,'-k','linewidth',2)
-% xout(end,:)
-% % axis([0 300 -1 1])
-
 
 
 
