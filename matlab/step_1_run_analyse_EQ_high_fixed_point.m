@@ -4,42 +4,27 @@
 %% get the path 
 currentFile = mfilename( 'fullpath' );
 [path,~,~] = fileparts( currentFile );
-path = strcat(path,"/EQ_Low/");
-if ~exist(path, 'dir')
+path = strcat(path,'/');
+directory = "/EQ_High/";
+if ~exist(strcat(path,directory), 'dir')
    mkdir(path)
 end
 
 %% initialise parameters
 nb_variable = 17;
-xinit = [0.0,0.0,0.0,0.0,0.0,0.0];
+xinit = [192.633343733407e-003, 192.792039966707e-003, 88.6955903317254e-009, 4.87672060835196e-012, 347.414969848884e-009];
 
-%% forward
-folder = "start";
-MaxStepsize=1e-6;
-MaxNumPoints_forward =200000;
-MaxNumPoints_backward=20000;  
-
-Equilibrium_Point(path,folder,nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward)
-
-%% forward precision for first LP
-folder = "zoom_beginning";
-MaxStepsize=1e-8;
-MaxNumPoints_forward =40000;
-MaxNumPoints_backward=-1;  
-
-Equilibrium_Point(path,folder,nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward)
-
-%% forward precision for first LP
-folder="zoom_LP";
-file="zoom_beginning/external_input_E_E_f.mat";
-number= 10000;
-MaxStepsize=1e-8;
-MaxNumPoints_forward=2000;
-MaxNumPoints_backward=-1;  
-TestTolerance = 1e-10;
-Equilibrium_Point_cont(path,folder,nb_variable,file,number,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,TestTolerance)
+% %% forward
+% folder = "start";
+% MaxStepsize=1e-5;
+% MaxNumPoints_forward =20050;
+% MaxNumPoints_backward=2000000;  
+% Increment=1e-6;
+% TestTolerance=1e-6;
+% Equilibrium_Point(path,strcat(directory,folder),nb_variable,xinit',MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,Increment,TestTolerance)
 
 %% concatenation
+path = strcat(path,directory);
 global name_variable
 name_variable=[
     "g_L",'E_L_e','E_L_i','C_m','E_e',...
@@ -51,11 +36,14 @@ name_variable=[
     'P_i_2','P_i_3','P_i_4','P_i_5','P_i_6',...
     'P_i_7','P_i_8','P_i_9',...
     ]; % Initialize parameter vector
+
 path_shift =[
-            struct('path',strcat(path,'/start/external_input_E_E_b.mat'),'flip',true,'shift',0);
-            struct('path',strcat(path,'/start/external_input_E_E_f.mat'),'flip',false,'shift',0);
+             struct('path',strcat(path,'/start/external_input_E_E_f.mat'),'flip',true,'shift',0);
+             struct('path',strcat(path,'/start/external_input_E_E_b.mat'),'flip',false,'shift',0);
              ];
 [x,v,f,h,s] = concatenate_result_1_dim(path_shift);
+save(path+"/EQ_high.mat",'x','v','s','h','f')
+
 if ~exist(path+"/figure/", 'dir')
    mkdir(path+"/figure/")
 end

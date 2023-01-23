@@ -1,11 +1,23 @@
 %  Copyright 2021 Aix-Marseille Université
 % "Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements; and to You under the Apache License, Version 2.0. "
-function Equilibrium_Point(path,folder,nb_variable,xinit,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,value,TestTolerance)
+function Equilibrium_Point(path,folder,nb_variable,xinit,MaxStepsize,MaxNumPoints_forward,MaxNumPoints_backward,increment,value,TestTolerance, FunTolerance, VarTolerance, InitStepsize, ap_previous)
     global name_variable
     [UserInfo,pvec,syshandle] = start_analyse(path,folder,nb_variable);
     
     if (exist("TestTolerance") ~= 1)
         TestTolerance=1e-7; 
+    end
+    if (exist("FunTolerance") ~= 1)
+        FunTolerance=1e-6; 
+    end
+    if (exist("VarTolerance") ~= 1)
+        VarTolerance=1e-6; 
+    end
+    if (exist("InitStepsize") ~= 1)
+        InitStepsize=1e-7; 
+    end
+    if (exist("ap_previous") ~= 1)
+        ap_previous=nb_variable; 
     end
     %%%%% Continuation from equilibrium %%%%%%%%%%%%%%%%
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -14,7 +26,7 @@ function Equilibrium_Point(path,folder,nb_variable,xinit,MaxStepsize,MaxNumPoint
     %%%%%% to bootstrap the continuation.
     ap=nb_variable; % Denote 'active' parameter for continuation
     if (exist("value") == 1)
-        pvec(ap)=value;
+        pvec(ap_previous)=value;
     end
     [x0,v0]=init_EP_EP(syshandle, xinit, pvec, ap); %Initialize equilibrium
 
@@ -25,11 +37,19 @@ function Equilibrium_Point(path,folder,nb_variable,xinit,MaxStepsize,MaxNumPoint
     opt=contset(opt,'MinStepsize',1e-16);%Set min step size
     opt=contset(opt,'Singularities',1);  %Monitor singularities
     opt=contset(opt,'Eigenvalues',1);    %Output eigenvalues 
-    opt=contset(opt,'InitStepsize',MaxStepsize/10.0); %Set Initial stepsize
-    opt=contset(opt,'Increment',1e-7); %Set initial increment this only for low 
+    opt=contset(opt,'Increment',increment); %Set initial increment this only for low 
     opt=contset(opt,'TestTolerance',TestTolerance);
     opt=contset(opt,'Userfunctions',1);%Set userfunction is used
     opt=contset(opt,'UserfunctionsInfo',UserInfo); %define info of user function
+
+    opt=contset(opt,'MaxCorrIters',100);  % maximum number of iteration for correction
+    opt=contset(opt,'MaxNewtonIters',100);  % maximum number of iteration for newton algorithm before switching to Newton-Chords in the corrector iterations
+    opt=contset(opt,'MaxTestIters',100);  % maximum number of iteration to locate a zero of a testfunction
+    opt=contset(opt,'MoorePenrose', 0); 
+    opt=contset(opt,'FunTolerance', FunTolerance);
+    opt=contset(opt,'VarTolerance', VarTolerance);
+    opt=contset(opt,'InitStepsize',InitStepsize); %Set Initial stepsize
+    opt=contset(opt,'Adapt', 0);
 
     %%%%% Continuation %%%%%
     if MaxNumPoints_forward > 0
@@ -58,7 +78,7 @@ function Equilibrium_Point(path,folder,nb_variable,xinit,MaxStepsize,MaxNumPoint
          s2 = struct('index',[1;1],'label',['00';'99'],'data',[struct('v',[]);struct('v',[])],'msg',char('This is the first point of the curve','This is the last point on the curve'));
      end
 
-    if MaxNumPoints_forward < 0
+    if MaxNumPoints_forward <= 0
          x1 = x2(:,1);
          v1 = v2(:,1);
          f1 = f2(:,1);

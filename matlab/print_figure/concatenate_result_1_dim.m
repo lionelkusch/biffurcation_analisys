@@ -21,8 +21,14 @@ for i = 2:numel(path_shift)
     if (path_shift(i).flip)
        [x_1,v_1,f_1,h_1,s_1] = flip_res(x_1,v_1,f_1,h_1,s_1);
     end
-    [x,v,f,h,s]=concatenate(x,v,f,h,s,x_1,v_1,f_1,h_1,s_1,path_shift(1).shift);
+    [x,v,f,h,s]=concatenate(x,v,f,h,s,x_1,v_1,f_1,h_1,s_1,path_shift(i).shift);
 end
+
+s_tmp = s;
+s_tmp(2:end+1) =s;
+s_tmp(1)=s_1(1);
+s_tmp(end+1)=s_1(end);
+s = s_tmp;
 
 
 function [x,v,f,h,s]=load_file(path)
@@ -68,24 +74,35 @@ if shift < 0
     v=[v_0,v_1(:,-shift:end)];
     h=[h_0,h_1(:,-shift:end)];
     s= s_0;
-    index_concatenate = s(end).index+shift;
-    s(end)=[];
-    size_s = numel(s);
-    for i=2:numel(s_1)
-        s(i-1+size_s) = s_1(i);
-        s(i-1+size_s).index = index_concatenate + s(i-1+size_s).index;
+    [dim_0_x_0, dim_1_x_0] = size(x_0);
+    index_concatenate = dim_1_x_0 + shift;
+    index_add = numel(s)+1;
+    for i=1:numel(s_1)
+        if ((s_1(i).index > -shift) && (~ (strcmp(s_1(i).label,'00') || strcmp(s_1(i).label,'99'))))
+            s(index_add) = s_1(i);
+            s(index_add).index = index_concatenate + s(index_add).index;
+            index_add=1+index_add;
+        end
     end
 elseif shift >= 0
     x=[x_0(:,1:end-shift),x_1];
     f=[f_0(:,1:end-shift),f_1];
     v=[v_0(:,1:end-shift),v_1];
     h=[h_0(:,1:end-shift),h_1];
-    s= s_0;
-    index_concatenate = s(end).index-shift;
+    index_s = 1;
+    [dim_h_0_1, dim_h_0_2] = size(h_0);
+    while (s_0(index_s).index < dim_h_0_2-shift)
+        index_s = 1 + index_s;
+    end
+    s= s_0(1:index_s);
+    index_s_0 = dim_h_0_2-shift;
+    index_s = numel(s);
     s(end)=[];
-    size_s = numel(s);
-    for i=2:numel(s_1)
-        s(i-1+size_s) = s_1(i);
-        s(i-1+size_s).index = index_concatenate + s(i-1+size_s).index;
+    for i=1:numel(s_1)
+        if (~ (strcmp(s_1(i).label,'00') || strcmp(s_1(i).label,'99')))
+            s(index_s) = s_1(i);
+            s(index_s).index = index_s_0 + s(index_s).index;
+            index_s = index_s + 1;
+        end
     end
 end

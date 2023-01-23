@@ -14,10 +14,7 @@ out{10} = @Boundary_up_v_e;
 out{11} = @Boundary_low_v_e;
 out{12} = @Boundary_up_v_i;
 out{13} = @Boundary_low_v_i;
-out{14} = @Boundary_up_w_e;
-out{15} = @Boundary_low_w_e;
-out{16} = @Boundary_up_w_i;
-out{17} = @Boundary_low_w_i;
+
 out{18} = @Boundary_up_g_L;
 out{19} = @Boundary_low_g_L;
 out{20} = @Boundary_up_E_L_e;
@@ -101,11 +98,11 @@ function dydt = fun_eval(t,kmrgd,par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par
 % fprintf("%f, %f, %f, %f, %f\n", kmrgd(1),kmrgd(2),kmrgd(3),kmrgd(4),kmrgd(5));
 if ~isreal(kmrgd)
     warning('not real argument')
-    [v_e,v_i,c_ee,c_ei,c_ii,w_e]=Zerlaut_model_adap(abs(kmrgd(1)),abs(kmrgd(2)),abs(kmrgd(3)),abs(kmrgd(4)),abs(kmrgd(5)),abs(kmrgd(6)),par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9);
+    [v_e,v_i,c_ee,c_ei,c_ii]=Zerlaut_model_adap(abs(kmrgd(1)),abs(kmrgd(2)),abs(kmrgd(3)),abs(kmrgd(4)),abs(kmrgd(5)),par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9);
 else
-    [v_e,v_i,c_ee,c_ei,c_ii,w_e]=Zerlaut_model_adap(kmrgd(1),kmrgd(2),kmrgd(3),kmrgd(4),kmrgd(5),kmrgd(6),par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9);
+    [v_e,v_i,c_ee,c_ei,c_ii]=Zerlaut_model_adap(kmrgd(1),kmrgd(2),kmrgd(3),kmrgd(4),kmrgd(5),par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9);
 end
-dydt=[v_e;v_i;c_ee;c_ei;c_ii;w_e];
+dydt=[v_e;v_i;c_ee;c_ei;c_ii];
 
 % --------------------------------------------------------------------------
 function [tspan,y0,options] = init
@@ -139,11 +136,7 @@ function userfun4=Boundary_low_v_i(t,kmrgd,par_g_L,par_E_L_e,par_E_L_i,par_C_m,p
 	userfun4=kmrgd(2)+1.0e-7;
 %% 
 %%%%%%W_e    
-function userfun5=Boundary_up_w_e(t,kmrgd,par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9)
-% 	userfun5=kmrgd(6)+1.0e-7;
-    userfun5=kmrgd(6)+10000.0*1e-3;
-function userfun6=Boundary_low_w_e(t,kmrgd,par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9)
-	userfun6=kmrgd(6)-10000.0*1e-3;
+
 %% 
 %%%%%%G_L
 function userfun7=Boundary_up_g_L(t,kmrgd,par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9)
@@ -270,6 +263,21 @@ function userfun41=Boundary_up_external_input_E_I(t,kmrgd,par_g_L,par_E_L_e,par_
 	userfun41=par_external_input_E_I-0.1;
 function userfun42=Boundary_low_external_input_E_I(t,kmrgd,par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9)
 	userfun42=par_external_input_E_I+0.1;
+
+    %% 
+%%%%%% external input_E_E
+function userfun39=Boundary_up_external_input_I_E(t,kmrgd,par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9)
+	userfun39=par_external_input_E_E-0.2;
+function userfun40=Boundary_low_external_input_I_E(t,kmrgd,par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9)
+	userfun40=par_external_input_E_E+0.2;
+    
+%% 
+%%%%%% external input_E_I
+function userfun41=Boundary_up_external_input_I_I(t,kmrgd,par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9)
+	userfun41=par_external_input_E_I-0.1;
+function userfun42=Boundary_low_external_input_I_I(t,kmrgd,par_g_L,par_E_L_e,par_E_L_i,par_C_m,par_E_e,par_E_i,par_Q_e,par_Q_i,par_tau_e,par_tau_i,par_tau_w_e,par_b_e,par_N_tot,par_p_connect,par_g,par_T,par_external_input_E_E,par_external_input_E_I,par_P_e_0,par_P_e_1,par_P_e_2,par_P_e_3,par_P_e_4,par_P_e_5,par_P_e_6,par_P_e_7,par_P_e_8,par_P_e_9,par_P_i_0,par_P_i_1,par_P_i_2,par_P_i_3,par_P_i_4,par_P_i_5,par_P_i_6,par_P_i_7,par_P_i_8,par_P_i_9)
+	userfun42=par_external_input_E_I+0.1;
+
 
 %% 
 %%%%%% P_e_0

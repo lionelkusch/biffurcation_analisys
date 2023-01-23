@@ -44,14 +44,14 @@ function figs=printing_1(x1,f1,v1,s1,x2,f2,v2,s2,nb_variable,tolerance)
     xlabel('v_e in KHz')
     ylabel('v_i in kHz')
     figs(end+1)=figure('Name','p vs v_e','NumberTitle','off');
-    cpl(x1,v1,s1,[7 1]);
-    cpl(x2,v2,s2,[7 1]);
+    cpl(x1,v1,s1,[6 1]);
+    cpl(x2,v2,s2,[6 1]);
     title('p vs v_e')
     xlabel(name_variable(nb_variable))
     ylabel('v_e in kHz')
     figs(end+1)=figure('Name','p vs v_i','NumberTitle','off');
-    cpl(x1,v1,s1,[7 2]);
-    cpl(x2,v2,s2,[7 2]);
+    cpl(x1,v1,s1,[6 2]);
+    cpl(x2,v2,s2,[6 2]);
     title('p vs v_i')
     xlabel(name_variable(nb_variable))
     ylabel('v_i in kHz')
@@ -91,46 +91,58 @@ function figs=printing_1(x1,f1,v1,s1,x2,f2,v2,s2,nb_variable,tolerance)
     figs(end+1)=figure('Name','v_e vs v_i','NumberTitle','off');
     print_stability(x1, f1, s1, 1,2,tolerance)
     print_stability(x2, f2, s2, 1,2,tolerance)
+    xlabel('v_e in KHz')
+    ylabel('v_i in kHz')
     figs(end+1)=figure('Name','v_e vs p','NumberTitle','off');
-    print_stability(x1, f1, s1, 1,7,tolerance)
-    print_stability(x2, f2, s2, 1,7,tolerance)
+    print_stability(x1, f1, s1, 1,6,tolerance)
+    print_stability(x2, f2, s2, 1,6,tolerance)
+    xlabel('v_e in KHz')
+    ylabel(name_variable(nb_variable))
     figs(end+1)=figure('Name','p vs v_i','NumberTitle','off');
-    print_stability(x1, f1, s1, 2,7,tolerance)
-    print_stability(x2, f2, s2, 2,7,tolerance)
+    print_stability(x1, f1, s1, 2,6,tolerance)
+    print_stability(x2, f2, s2, 2,6,tolerance)
+    xlabel('v_i in KHz')
+    ylabel(name_variable(nb_variable))
 end
 
-function figs=printing_2(x1,f1,v1,s1,x2,f2,v2,s2,nb_variable,first_parameter,tolerance)
+function figs=printing_2(x1,f1,v1,s1,x2,f2,v2,s2,first_parameter,nb_variable,tolerance)
     global name_variable
     figs=printing(x1,f1,v1,s1,x2,f2,v2,s2,first_parameter,tolerance);
 
     figs(end+1)=figure('Name','p2 vs v_e','NumberTitle','off');
-    cpl(x1,v1,s1,[8 1]);
-    cpl(x2,v2,s2,[8 1]);
-    title('p vs v_e')
+    cpl(x1,v1,s1,[7 1]);
+    cpl(x2,v2,s2,[7 1]);
+    title('p2 vs v_e')
     xlabel(name_variable(nb_variable))
     ylabel('v_e in kHz')
     figs(end+1)=figure('Name','p2 vs v_i','NumberTitle','off');
-    cpl(x1,v1,s1,[8 2]);
-    cpl(x2,v2,s2,[8 2]);
-    title('p vs v_i')
+    cpl(x1,v1,s1,[7 2]);
+    cpl(x2,v2,s2,[7 2]);
+    title('p2 vs v_i')
     xlabel(name_variable(nb_variable))
     ylabel('v_i in kHz')
     figs(end+1)=figure('Name','p1 vs p2','NumberTitle','off');
-    cpl(x1,v1,s1,[7 8]);
-    cpl(x2,v2,s2,[7 8]);
-    title('p vs v_i')
-    xlabel(name_variable(nb_variable))
-    ylabel('v_i in kHz')
+    cpl(x1,v1,s1,[6 7]);
+    cpl(x2,v2,s2,[6 7]);
+    title('p1 vs p2')
+    xlabel(name_variable(first_parameter))
+    ylabel(name_variable(nb_variable))
     %% stability figures
     figs(end+1)=figure('Name','v_e vs p2','NumberTitle','off');
-    print_stability(x1, f1, s1, 1,8,tolerance)
-    print_stability(x2, f2, s2, 1,8,tolerance)
+    print_stability(x1, f1, s1, 1,7,tolerance)
+    print_stability(x2, f2, s2, 1,7,tolerance)
+    xlabel('v_e in KHz')
+    ylabel(name_variable(nb_variable))
     figs(end+1)=figure('Name','p2 vs v_i','NumberTitle','off');
-    print_stability(x1, f1, s1, 2,8,tolerance)
-    print_stability(x2, f2, s2, 2,8,tolerance)
+    print_stability(x1, f1, s1, 2,7,tolerance)
+    print_stability(x2, f2, s2, 2,7,tolerance)
+    xlabel('v_i in KHz')
+    ylabel(name_variable(nb_variable))
     figs(end+1)=figure('Name','p vs p2','NumberTitle','off');
-    print_stability(x1, f1, s1, 7,8,tolerance)
-    print_stability(x2, f2, s2, 7,8,tolerance)
+    print_stability(x1, f1, s1, 6,7,tolerance)
+    print_stability(x2, f2, s2, 6,7,tolerance)
+    xlabel(name_variable(first_parameter))
+    ylabel(name_variable(nb_variable))
 end
     
 function figs=printing_one(x,f,v,s,nb_variable,tolerance)
@@ -144,12 +156,12 @@ function figs=printing_one(x,f,v,s,nb_variable,tolerance)
     xlabel('v_e in KHz')
     ylabel('v_i in kHz')
     figs(end+1)=figure('Name','p vs v_e','NumberTitle','off');
-    cpl(x,v,s,[7 1]);
+    cpl(x,v,s,[6 1]);
     title('p vs v_e')
     xlabel(name_variable(nb_variable))
     ylabel('v_e in kHz')
     figs(end+1)=figure('Name','p vs v_i','NumberTitle','off');
-    cpl(x,v,s,[7 2]);
+    cpl(x,v,s,[6 2]);
     title('p vs v_i')
     xlabel(name_variable(nb_variable))
     ylabel('v_i in kHz')
@@ -184,36 +196,48 @@ function figs=printing_one(x,f,v,s,nb_variable,tolerance)
     %% stability figures
     figs(end+1)=figure('Name','v_e vs v_i','NumberTitle','off');
     print_stability(x, f, s, 1,2,tolerance)
+    xlabel('v_e in KHz')
+    ylabel('v_i in kHz')
     figs(end+1)=figure('Name','v_e vs p','NumberTitle','off');
-    print_stability(x, f, s, 1,7,tolerance)
+    print_stability(x, f, s, 1,6,tolerance)
+    xlabel('v_e in KHz')
+    ylabel(name_variable(nb_variable))
     figs(end+1)=figure('Name','p vs v_i','NumberTitle','off');
-    print_stability(x, f, s, 2,7,tolerance)
+    print_stability(x, f, s, 2,6,tolerance)
+    xlabel('v_i in KHz')
+    ylabel(name_variable(nb_variable))
 end
 
-function figs=printing_one_2(x,f,v,s,nb_variable,first_parameter,tolerance)
+function figs=printing_one_2(x,f,v,s,first_parameter,nb_variable,tolerance)
     global name_variable
     figs=printing_one(x,f,v,s,first_parameter,tolerance);
 
     figs(end+1)=figure('Name','p2 vs v_e','NumberTitle','off');
-    cpl(x,v,s,[8 1]);
-    title('p vs v_e')
+    cpl(x,v,s,[7 1]);
+    title('p2 vs v_e')
     xlabel(name_variable(nb_variable))
     ylabel('v_e in kHz')
     figs(end+1)=figure('Name','p2 vs v_i','NumberTitle','off');
-    cpl(x,v,s,[8 2]);
-    title('p vs v_i')
+    cpl(x,v,s,[7 2]);
+    title('p2 vs v_i')
     xlabel(name_variable(nb_variable))
     ylabel('v_i in kHz')
     figs(end+1)=figure('Name','p1 vs p2','NumberTitle','off');
-    cpl(x,v,s,[7 8]);
-    title('p vs v_i')
-    xlabel(name_variable(nb_variable))
-    ylabel('v_i in kHz')
+    cpl(x,v,s,[6 7]);
+    title('p1 vs p2')
+    xlabel(name_variable(first_parameter))
+    ylabel(name_variable(nb_variable))
     %% stability figures
     figs(end+1)=figure('Name','v_e vs p2','NumberTitle','off');
-    print_stability(x, f, s, 1,8,tolerance)
+    print_stability(x, f, s, 1,7,tolerance)
+    xlabel('v_e in KHz')
+    ylabel(name_variable(nb_variable))
     figs(end+1)=figure('Name','p2 vs v_i','NumberTitle','off');
-    print_stability(x, f, s, 2,8,tolerance)
+    print_stability(x, f, s, 2,7,tolerance)
+    xlabel('v_i in KHz')
+    ylabel(name_variable(nb_variable))
     figs(end+1)=figure('Name','p vs p2','NumberTitle','off');
-    print_stability(x, f, s, 7,8,tolerance)
+    print_stability(x, f, s,6,7,tolerance)
+    xlabel(name_variable(first_parameter))
+    ylabel(name_variable(nb_variable))
 end

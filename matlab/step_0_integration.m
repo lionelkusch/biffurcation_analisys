@@ -7,8 +7,8 @@ format longEng
 
 %%%%% Set continuation pause environment variables %%%%%
 %%
-sys.gui.pausespecial=0;  %Pause at special points 
-sys.gui.pausenever=1;    %Pause never 
+sys.gui.pausespecial=0;   %Pause at special points 
+sys.gui.pausenever=1;     %Pause never 
 sys.gui.pauseeachpoint=0; %Pause at each point
 
 %%%%% Set system %%%%%
@@ -25,10 +25,10 @@ RHShandle=SubFunHandles{2};      %Get function handle for ODE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%Initialisation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 [g_L,E_L_e,E_L_i,C_m,E_e,E_i,Q_e,Q_i,tau_e,tau_i,tau_w_e,b_e,N_tot,p_connect,g,T,external_input_E_E,external_input_E_I,P_e_0,P_e_1,P_e_2,P_e_3,P_e_4,P_e_5,P_e_6,P_e_7,P_e_8,P_e_9,P_i_0,P_i_1,P_i_2,P_i_3,P_i_4,P_i_5,P_i_6,P_i_7,P_i_8,P_i_9] = load_parameters("./parameter.mat");
-% xinit = [0.1,0.0,0.0,0.0,0.0,0.0]; % test
-xinit = [3.45432999849642e-003, 9.39513581484787e-003, 16.5141387100010e-006,35.2176982561329e-006,81.8757983637968e-006,0.00000000000000e+000]; % limit circle
-% xinit = [192.633343733407e-003, 192.792039966707e-003, 88.6955903317254e-009, 4.87672060835196e-012, 347.414969848884e-009, 0.00000000000000e+000]; % high fix point
-%%%%%% Define an anynomous function to pass to integrator %%%%%
+% xinit = [0.01,0.02,0.0,0.0,0.0,0.0]; % test
+% xinit = [19.4041576608706e-003    32.9354748545804e-003    264.006454674855e-006    442.571316134613e-006    760.407885970590e-006]; % limit circle
+% xinit = [192.630813486639e-003    192.791963261722e-003    88.7249213177669e-009   -476.385615694353e-015    347.418529152461e-009];
+xinit = [6.77033765687267e-003    15.6056355721208e-003    211.562411594201e-009    292.622649231016e-009    1.39871396988592e-006];
 RHS_no_param=@(t,x)RHShandle(t,x,g_L,E_L_e,E_L_i,C_m,E_e,E_i,Q_e,Q_i,tau_e,tau_i,tau_w_e,b_e,N_tot,p_connect,g,T,external_input_E_E,external_input_E_I,P_e_0,P_e_1,P_e_2,P_e_3,P_e_4,P_e_5,P_e_6,P_e_7,P_e_8,P_e_9,P_i_0,P_i_1,P_i_2,P_i_3,P_i_4,P_i_5,P_i_6,P_i_7,P_i_8,P_i_9); 
 
 %%%%% Set ODE integrator options %%%%%
