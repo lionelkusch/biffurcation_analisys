@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def print_stability(x_origin, f_origin, s_origin, axis_x, axis_y, tolerance=1e-50, color='k',
                     presicion_x=0.01, presicion_y=0.01, letter=True, linewidth=4.0, markersize=10.0,
-                    legend_fontsize=10):
+                    legend_fontsize=10, ymin=None, ymax=None, xmin=None, xmax=None):
     resample = [0]
     for index, (i, j) in enumerate(zip(x_origin[axis_x, :], x_origin[axis_y, :])):
         if np.abs(x_origin[axis_x, resample[-1]] - i) > presicion_x or np.abs(x_origin[axis_y, resample[-1]] - j) > presicion_y:
@@ -54,9 +54,15 @@ def print_stability(x_origin, f_origin, s_origin, axis_x, axis_y, tolerance=1e-5
 
     if letter:
         for data in s_origin[1:-1]:
-            if data['msg'] != 'Neutral Saddle Equilibrium' and data['label'] != 'BV':
-                plt.plot(x_origin[axis_x, data['index'] - 1], x_origin[axis_y, data['index'] - 1], 'rx', markersize=10.0)
-                plt.text(x_origin[axis_x, data['index'] - 1], x_origin[axis_y, data['index'] - 1], "  " + data['label'], fontdict={'fontsize':legend_fontsize})
+            if data['msg'] != 'Neutral Saddle Equilibrium' and data['label'] != 'BV' and data['label'] != 'B':
+                if (xmin < x_origin[axis_x, data['index'] - 1] < xmax) and\
+                        (ymin < x_origin[axis_y, data['index'] - 1] < ymax):
+                        plt.plot(x_origin[axis_x, data['index'] - 1], x_origin[axis_y, data['index'] - 1],
+                                 'rx', markersize=markersize)
+                        plt.text(x_origin[axis_x, data['index'] - 1], x_origin[axis_y, data['index'] - 1],
+                                 "  " + data['label'], fontdict={'fontsize': legend_fontsize})
 
+    plt.xlim(xmin=xmin, xmax=xmax)
+    plt.ylim(ymin=ymin, ymax=ymax)
     # plt.show()
     return line
