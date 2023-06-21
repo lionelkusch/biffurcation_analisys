@@ -1,3 +1,5 @@
+#  Copyright 2023 Aix-Marseille Université
+# "Licensed to the Apache Software Foundation (ASF) under one or more contributor license agreements; and to You under the Apache License, Version 2.0. "
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.collections as mcoll
@@ -13,16 +15,22 @@ def colorline(
     Plot a colored line with coordinates x and y
     Optionally specify colors in the array z
     Optionally specify a colormap, a norm function and a line width
+    :param x:
+    :param y:
+    :param z:
+    :param cmap: color map
+    :param norm: normalized of matplotlib
+    :param linewidth: width of the line
+    :param alpha: transparency
+    :return:
     """
 
     segments, z = make_segments(x, y, z)
     z = np.asarray(z)
     lc = mcoll.LineCollection(segments, array=z, cmap=cmap, norm=norm,
                               linewidth=linewidth, alpha=alpha)
-
     ax = plt.gca()
     ax.add_collection(lc)
-
     return lc
 
 
@@ -31,6 +39,12 @@ def make_segments(x, y, z, presicion_x=0.01, presicion_y=0.01):
     Create list of line segments from x and y coordinates, in the correct format
     for LineCollection: an array of the form numlines x (points per line) x 2 (x
     and y) array
+    :param x:
+    :param y:
+    :param z:
+    :param presicion_x: precision of x
+    :param presicion_y: precision of y
+    :return:
     """
     resample_x = [x[0]]
     resample_y = [y[0]]
