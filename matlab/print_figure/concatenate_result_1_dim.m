@@ -91,7 +91,8 @@ elseif shift >= 0
     h=[h_0(:,1:end-shift),h_1];
     index_s = 1;
     [dim_h_0_1, dim_h_0_2] = size(h_0);
-    while (s_0(index_s).index < dim_h_0_2-shift)
+    size_s = size(s_0);
+    while (index_s < size_s(2)) && (s_0(index_s).index < dim_h_0_2-shift) 
         index_s = 1 + index_s;
     end
     s= s_0(1:index_s);

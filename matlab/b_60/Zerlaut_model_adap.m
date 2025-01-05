@@ -106,7 +106,7 @@ function [dev_E,dev_I,dev_c_ee,dev_c_ei,dev_c_ii,dev_W]=Zerlaut_model_adap(E,I,C
                 2.*C_ii.*diff_fi(@TF_i, E+external_input_I_E, I+external_input_I_I, W_i)+...
                 2.*C_ei.*diff_fe(@TF_i, E+external_input_E_E, I+external_input_E_I, W_e)+...
                 -2.*C_ii)./T; 
-     dev_W = -W_e/tau_w_e+b_e*(E+external_input_E_E);
+     dev_W = -W_e/tau_w_e+b_e*E;
      dev_W = dev_W*1e-3;
 
 end
